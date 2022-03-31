@@ -9,3 +9,8 @@ export const postActions = {
   UPDATE: "UPDATE",
   FETCH_ALL: "FETCH_ALL",
 };
+
+export const authActions = {
+  AUTH: "AUTH",
+  LOGOUT: "LOGOUT",
+};

@@ -1,26 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { AppBar, Avatar, Typography, Button, Toolbar } from "@material-ui/core";
 import useStyles from "./styles";
 import memories from "../../images/memories.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 function Navbar() {
-  const user = null;
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  // const [user, setUser] = useState(null);
+  // console.log(user);
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const token = user?.token;
+
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [location]);
+
+  function logout() {
+    dispatch({ type: "LOGOUT" });
+    navigate("/");
+    setUser(null);
+  }
 
   return (
     <AppBar position="static" color="inherit" className={classes.appBar}>
       <div className={classes.brandContainer}>
-        {/* <Link to="/"> */}
         <Typography
-          component="h2"
+          component={Link}
+          to="/"
           className={classes.heading}
           variant="h2"
           align="center"
         >
           Memories
         </Typography>
-        {/* </Link> */}
+
         <img
           src={memories}
           alt="memories"
@@ -45,16 +63,20 @@ function Navbar() {
               variant="contained"
               className={classes.logout}
               color="secondary"
+              onClick={logout}
             >
               Log Out
             </Button>
           </div>
         ) : (
-          //   <Link to="/auth">
-          <Button variant="contained" color="primary">
+          <Button
+            component={Link}
+            to="/auth"
+            variant="contained"
+            color="primary"
+          >
             Sign In
           </Button>
-          //   </Link>
         )}
       </Toolbar>
     </AppBar>
