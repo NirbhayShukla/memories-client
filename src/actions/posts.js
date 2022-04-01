@@ -1,6 +1,20 @@
 import * as api from "../api";
 import { postActions, loading } from "../constants/actionTypes";
 
+export const getPost = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: loading.START });
+    const { data } = await api.fetchPost(id);
+    dispatch({
+      type: postActions.FETCH_POST,
+      payload: data,
+    });
+    dispatch({ type: loading.END });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 export const getPosts = (page) => async (dispatch) => {
   try {
     dispatch({ type: loading.START });

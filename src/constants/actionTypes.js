@@ -8,6 +8,7 @@ export const postActions = {
   DELETE: "DELETE",
   UPDATE: "UPDATE",
   FETCH_ALL: "FETCH_ALL",
+  FETCH_POST: "FETCH_POST",
   FETCH_BY_SEARCH: "FETCH_BY_SEARCH",
 };
 
