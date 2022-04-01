@@ -12,6 +12,9 @@ const reducer = (state = [], action) => {
       );
     case postActions.DELETE:
       return state.filter((item) => item._id !== action.payload);
+
+    case postActions.FETCH_BY_SEARCH:
+      return action.payload;
     default:
       return state;
   }
