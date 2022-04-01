@@ -15,3 +15,8 @@ export const authActions = {
   AUTH: "AUTH",
   LOGOUT: "LOGOUT",
 };
+
+export const loading = {
+  START: "START",
+  END: "END",
+};

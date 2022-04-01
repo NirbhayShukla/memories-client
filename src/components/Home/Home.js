@@ -33,10 +33,6 @@ function Home() {
   const page = query.get("page") || 1;
   const searchQuery = query.get("searchQuery");
 
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch, currentId]);
-
   const searchPost = () => {
     if (search.trim() || tags) {
       dispatch(getPostBySearch({ search, tags: tags.join(",") }));
@@ -106,9 +102,11 @@ function Home() {
               </Button>
             </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
-            <Paper elevation={6}>
-              <Pagination page={page} />
-            </Paper>
+            {!searchQuery && !tags.length && (
+              <Paper elevation={6} className={classes.pagination}>
+                <Pagination page={page} />
+              </Paper>
+            )}
           </Grid>
         </Grid>
       </Container>
