@@ -25,6 +25,8 @@ const initialState = {
   confirmPassword: "",
 };
 
+//changes
+
 function Auth() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(true);
