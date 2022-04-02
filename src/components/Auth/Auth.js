@@ -27,7 +27,7 @@ const initialState = {
 
 function Auth() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(true);
   const [formData, setFormData] = useState(initialState);
   const classes = useStyles();
   const dispatch = useDispatch();

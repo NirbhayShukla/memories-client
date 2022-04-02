@@ -74,7 +74,7 @@ function Navbar() {
             variant="contained"
             color="primary"
           >
-            Sign In
+            Sign Up
           </Button>
         )}
       </Toolbar>

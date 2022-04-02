@@ -44,8 +44,13 @@ export const createPost = (post, navigate) => async (dispatch) => {
 
 export const updatePost = (id, post, navigate) => async (dispatch) => {
   try {
+    dispatch({ type: loading.START });
+
     const { data } = await api.updatePost(id, post);
+    console.log(data);
     dispatch({ type: postActions.UPDATE, payload: data });
+    dispatch({ type: loading.END });
+
     navigate(`/posts/${data._id}`);
   } catch (error) {
     console.log(error);
