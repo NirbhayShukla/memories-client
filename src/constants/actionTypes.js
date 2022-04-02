@@ -10,6 +10,7 @@ export const postActions = {
   FETCH_ALL: "FETCH_ALL",
   FETCH_POST: "FETCH_POST",
   FETCH_BY_SEARCH: "FETCH_BY_SEARCH",
+  COMMENT: "COMMENT",
 };
 
 export const authActions = {

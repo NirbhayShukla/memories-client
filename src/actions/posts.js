@@ -29,22 +29,24 @@ export const getPosts = (page) => async (dispatch) => {
   }
 };
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, navigate) => async (dispatch) => {
   try {
     dispatch({ type: loading.START });
 
     const { data } = await api.createPost(post);
     dispatch({ type: postActions.CREATE, payload: data });
     dispatch({ type: loading.END });
+    navigate(`/posts/${data._id}`);
   } catch (error) {
     console.log(error);
   }
 };
 
-export const updatePost = (id, post) => async (dispatch) => {
+export const updatePost = (id, post, navigate) => async (dispatch) => {
   try {
     const { data } = await api.updatePost(id, post);
     dispatch({ type: postActions.UPDATE, payload: data });
+    navigate(`/posts/${data._id}`);
   } catch (error) {
     console.log(error);
   }
@@ -63,6 +65,17 @@ export const likePost = (id) => async (dispatch) => {
   try {
     const { data } = await api.likePost(id);
     dispatch({ type: "UPDATE", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const commentPost = (value, id) => async (dispatch) => {
+  try {
+    const { data } = await api.comment(value, id);
+    dispatch({ type: postActions.COMMENT, payload: data });
+
+    return data.comments;
   } catch (error) {
     console.log(error);
   }

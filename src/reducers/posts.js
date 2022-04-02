@@ -33,6 +33,15 @@ const reducer = (state = { isLoading: true, posts: [], post: {} }, action) => {
       return { ...state, posts: action.payload };
     case postActions.FETCH_POST:
       return { ...state, post: action.payload };
+    case postActions.COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          if (post._id === action.payload._id) return action.payload;
+
+          return post;
+        }),
+      };
     default:
       return state;
   }

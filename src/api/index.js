@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({ baseURL: process.env.REACT_APP_SERVER_URL });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
@@ -8,8 +8,6 @@ API.interceptors.request.use((req) => {
       JSON.parse(localStorage.getItem("profile")).token
     }`;
   }
-  // console.log("intercepted");
-  // console.log(req.headers);
   return req;
 });
 
@@ -31,6 +29,10 @@ export const updatePost = (id, updatedPost) =>
 
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
+export const comment = (value, id) =>
+  API.post(`/posts/${id}/commentPost`, { value });
+
+// auth
 
 export const signIn = (formData) => API.post("/user/signin", formData);
 

@@ -21,6 +21,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Navigate replace to="/posts" />} />
+          <Route exact path="*" element={<Navigate replace to="/posts" />} />
           <Route exact path="/posts" element={<Home />} />
           <Route exact path="/posts/search" element={<Home />} />
           <Route exact path="/posts/:id" element={<PostDetails />} />
